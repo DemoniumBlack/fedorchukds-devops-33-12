@@ -35,7 +35,21 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 
 3. Создал короткий ssh ключ используя ```ssh-keygen -t ed25519```, записал его pub часть в переменную ***vms_ssh_root_key***.
 
-4. 
+4. Инициализировал проект, выполнил код. Нашел ошибки в блоке ***resource "yandex_compute_instance" "platform" {***.
+
+Ошибки были следующие:
+
+* В строке ***platform_id = "standart-v4"*** должно быть слово standard
+* Версия v4 неправильная. Согласно документации Yandex.Cloud (https://cloud.yandex.ru/docs/compute/concepts/vm-platforms) платформы могут быть только v1, v2 и v3.
+* В строке ***cores         = 1*** указано неправильное количество ядер процессора. Согласно документации Yandex.Cloud (https://cloud.yandex.ru/docs/compute/concepts/performance-levels) минимальное количество виртуальных ядер процессора для всех платформ равно двум.
+
+После исправления ошибок удалось запустить код и создать виртуальную машину.
+
+Исправленный блок ресурса выглядит следующим образом:
+
+![img_1.png](IMG/img_1.png)
+
+5. 
 
 ### Задание 2
 
