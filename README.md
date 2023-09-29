@@ -100,15 +100,15 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 
 2. В блоке ресурса создал вторую ВМ с указанными параметрами и объявил её переменные с префиксом ***vm_db_*** в файле vms_platform.tf:
 
-![img_9.png](img_9.png)
+![img_9.png](IMG/img_9.png)
 
-![img_10.png](img_10.png)
+![img_10.png](IMG/img_10.png)
 
 3. Применяю конфигурацию, вносится изменение в текущую инфраструктуру, создается еще одна виртуальная машина:
 
-![img_11.png](img_11.png)
+![img_11.png](IMG/img_11.png)
 
-![img_12.png](img_12.png)
+![img_12.png](IMG/img_12.png)
 
 ### Задание 4
 
