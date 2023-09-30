@@ -191,6 +191,29 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 3. Напишите, какой командой можно отобразить значение ключа admin из map test_map.
 4. Напишите interpolation-выражение, результатом которого будет: "John is admin for production server based on OS ubuntu-20-04 with X vcpu, Y ram and Z virtual disks", используйте данные из переменных test_list, test_map, servers и функцию length() для подстановки значений.
 
-В качестве решения предоставьте необходимые команды и их вывод.
+
+1. Поскольку нумерация идем со значения 0, то второй элемент можно отобразить командой ```local.test_list[1]```:
+
+![img_24.png](IMG/img_24.png)
+
+2. Длину списка test_list можно узнать командой ```length(["develop", "staging", "production"])```. Длина списка равна 3:
+
+![img_25.png](IMG/img_25.png)
+
+3. Отобразить значение ключа admin из map test_map можно командой ```local.test_map["admin"]```:
+
+![img_26.png](IMG/img_26.png)
+
+4. Для выполнения этого пункта я написал в output такое выражение:
+
+output "admin_server_info" {
+  value = "${local.test_map.admin} is admin for ${local.test_list[length(local.test_list)-1]} server based on OS ${local.servers[local.test_list[length(local.test_list)-1]]["image"]} with ${local.servers[local.test_list[length(local.test_list)-1]]["cpu"]} vcpu, ${local.servers[local.test_list[length(local.test_list)-1]]["ram"]} ram, and ${local.servers.production["disks"][0]}, ${local.servers.production["disks"][1]}, ${local.servers.production["disks"][2]}, ${local.servers.production["disks"][3]} virtual disks."
+}
+
+![img_27.png](IMG/img_27.png)
+
+Команда ```terraform output``` выводит нужный текст:
+
+![img_28.png](IMG/img_28.png)
 
 ------
